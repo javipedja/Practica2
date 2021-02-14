@@ -3,6 +3,7 @@
 
 resource "azurerm_linux_virtual_machine" "myVM" {
     name                = "vm-${var.vms[count.index]}"
+    count               = length(var.vms)
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
     size                = var.vm_size
@@ -34,7 +35,7 @@ resource "azurerm_linux_virtual_machine" "myVM" {
     }
 
     boot_diagnostics {
-        storage_account_uri = azurerm_storage_account.stAccount.primary_blob_endpoint
+        storage_account_uri = azurerm_storage_account.stAccount[count.index].primary_blob_endpoint
     }
 
     tags = {
