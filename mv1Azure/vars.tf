@@ -1,7 +1,7 @@
 variable "location" {
   type = string
   description = "Región de Azure donde crearemos la infraestructura"
-  default = "East US"
+  default = "West Europe"
 }
 
 variable "vm_size" {
