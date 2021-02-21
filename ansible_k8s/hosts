@@ -1,0 +1,15 @@
+#Inventario utilizando 2 servidores de 2 CPUs
+
+[all:vars]
+ansible_python_interpreter = /usr/bin/python3
+ansible_user = adminUsername
+
+
+[master]
+13.94.205.86
+
+[workers]
+52.174.101.106
+
+[nfs]
+13.94.205.86

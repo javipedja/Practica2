@@ -1,0 +1,11 @@
+- name: Despliegues comunes
+  hosts: all
+  become: yes
+  vars_files:
+    - "group_vars/comunes.yaml"
+  gather_facts: true
+  roles:
+    - comunes
+
+
+ 
