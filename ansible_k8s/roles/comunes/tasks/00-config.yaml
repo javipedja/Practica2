@@ -1,0 +1,40 @@
+  #- name: Actualizamos los paquetes a la última versión.
+  #  dnf:
+  #    name: "*"
+  #    state: latest
+
+  - name: Zona horaria Europe/Madrid.
+    timezone:
+      name: Europe/Madrid
+
+  - name: Instalar Chrony.
+    package:
+      name: 
+       - chrony
+      state: latest
+
+  - name: Verificar ejecución de Chrony.
+    systemd: 
+      name: chronyd
+      daemon_reload: yes
+      enabled: yes
+
+  - name: Activamos ntp.
+    shell: "timedatectl set-ntp true"
+
+  - name: Desactivamos SELinux.
+    shell: sed -i s/=enforcing/=disabled/g /etc/selinux/config
+    args:
+      warn: false
+
+  - name: Instalar nfs-utils.
+    package:
+      name: 
+       - nfs-utils
+      state: latest
+
+  - name: Instalar nfs4-acl-tools.
+    package:
+      name: 
+       - nfs4-acl-tools
+      state: latest

@@ -1,0 +1,9 @@
+- name: Despliegues nodo master
+  hosts: master
+  become: yes
+  gather_facts: true
+  roles:
+    - master
+
+
+ 

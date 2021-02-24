@@ -1,0 +1,35 @@
+  - name: Instalar nfs-utils.
+    package:
+      name: 
+       - nfs-utils
+      state: latest
+
+  - name: Instalar net-tools.
+    package:
+      name: 
+       - net-tools
+      state: latest
+
+  - name: Verificar ejecución de nfs-server.
+    systemd: 
+      name: nfs-server
+      daemon_reload: yes
+      enabled: yes
+
+  - name: Configuracion firwall servicio nfs
+    firewalld:
+      service: nfs
+      permanent: true
+      state: enabled
+
+  - name: Configuracion firwall servicio rpc-bind
+    firewalld:
+      service: rpc-bind
+      permanent: true
+      state: enabled
+
+  - name: Configuracion firwall servicio mountd
+    firewalld:
+      service: mountd
+      permanent: true
+      state: enabled
