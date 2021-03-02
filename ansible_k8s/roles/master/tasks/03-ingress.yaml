@@ -1,0 +1,2 @@
+  - name: Instalamos el ingress controller
+    shell: kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/deploy/haproxy-ingress.yaml

@@ -1,0 +1,27 @@
+  - name: Configuracion firwall servicio mountd
+    firewalld:
+      port: 10250/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+      zone: public
+
+  - firewalld:
+      port: 30000-32767/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+      zone: public
+  
+  - name: Copying token to worker nodes
+    copy: src={{ token_file }} dest=join_token
+
+  - name: Joining worker nodes with kubernetes master
+    shell: |
+     cat join_token | tail -2 > out.sh
+     sh out.sh
+    register: kubeadm_join_cmd   
+
+  - name: debug
+    debug: msg="{{ kubeadm_join_cmd.stdout }}"
+    delegate_to: 127.0.0.1

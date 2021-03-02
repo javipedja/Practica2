@@ -1,9 +1,7 @@
-- name: Despliegues nodo master
+- name: Despliegues de app en kubernetes
   hosts: master
   become: yes
   gather_facts: true
   roles:
-    - master
-
-
+    - app
  

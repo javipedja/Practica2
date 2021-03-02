@@ -1,0 +1,21 @@
+- name: Despliegues nodo master
+  hosts: master
+  vars_files:
+    - "group_vars/comunes.yaml"
+  become: yes
+  gather_facts: true
+  roles:
+    - comunes
+    - master
+    - nfs
+
+- name: Despliegues nodo worker
+  hosts: worker
+  vars_files:
+    - "group_vars/comunes.yaml"
+  become: yes
+  gather_facts: true
+  roles:
+    - comunes
+    - worker
+ 

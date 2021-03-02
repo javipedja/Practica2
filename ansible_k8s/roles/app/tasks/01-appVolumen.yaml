@@ -1,0 +1,26 @@
+  - name: Creamos un namespace
+    shell: kubectl create namespace webapp-volumes
+
+  - name: Copiamos nfs-pv.yaml
+    copy:
+      src: app/nfs-pv.yaml
+      dest: /home/adminUsername
+  
+  - name: Definimos el persistent volume
+    shell: kubectl apply -f nfs-pv.yaml 
+
+  - name: Copiamos nfs-pvc.yaml
+    copy:
+      src: app/nfs-pvc.yaml
+      dest: /home/adminUsername
+  
+  - name: Definimos el claim
+    shell: kubectl apply -f nfs-pvc.yaml 
+
+  - name: Copiamos webapp-volumes.yaml
+    copy:
+      src: app/webapp-volumes.yaml
+      dest: /home/adminUsername
+  
+  - name: Realizamos el deployment
+    shell: kubectl apply -f webapp-volumes.yaml

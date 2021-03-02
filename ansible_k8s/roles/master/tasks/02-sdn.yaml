@@ -1,0 +1,19 @@
+  - name: Instalamos el operador de Tigera
+    shell: kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+
+  - name: Instalamos Calico junto con los custom resources que necesita
+    shell: wget https://docs.projectcalico.org/manifests/custom-resources.yaml
+
+  - name: Cambiamos el cidr para que coincida con el de nuestra red de PODs
+    replace:
+      path:  custom-resources.yaml
+      regexp: '192.168.0.0/16'
+      replace: '192.169.0.0/16'
+  
+  - name: Instalamos Calico 
+    shell: kubectl apply -f custom-resources.yaml
+
+  
+
+
+  

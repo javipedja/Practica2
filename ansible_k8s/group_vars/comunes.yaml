@@ -1,2 +1,4 @@
-master.azure: '13.94.205.86'
-worker.azure: '13.94.205.71'
+
+token_file: join_token
+kubeadmin: kubeadmin
+pass_kubeadmin: kubeadmin

@@ -1,0 +1,7 @@
+  - name: Copiamos nfs-pv.yaml
+    copy:
+      src: app/app.yaml
+      dest: /home/adminUsername 
+
+  - name: Realizamos el deployment
+    shell: kubectl apply -f app.yaml

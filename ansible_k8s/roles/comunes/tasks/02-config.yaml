@@ -7,7 +7,11 @@
   firewalld:
     masquerade: yes
     state: enabled
-    permanent: true
+    permanent: yes
+
+- name: Iniciamos firewalld
+  shell: "service firewalld start"
+
 
 - name: Permitir que kubernetes maneje correctamente el tráfico con el cortafuegos. (1)
   shell: | 
@@ -29,6 +33,9 @@
   args:
     warn: false
 
+- name: Iniciamos docker
+  shell: "service docker start"
+
 - name: Verificar ejecución de docker.
   systemd: 
     name: docker
@@ -48,7 +55,12 @@
           exclude=kubelet kubeadm kubectl
           EOF
 
+- name: Comprobamos si ya esta instaldo kubelet
+  package_facts:
+    manager: "auto"
+
 - name: Instalamos - kubelet kubeadm kubectl
+  when: "not 'kubelet' in ansible_facts.packages"
   yum:
     name: "{{ packages }}"
     state: latest

@@ -1,0 +1,19 @@
+- name: Creamos un usuario no administrador para la gestión del clúster
+  user:
+    name: "{{ kubeadmin }}"
+    password: "{{ pass_kubeadmin | password_hash('sha512')}}"
+
+- file:
+    path: /home/kubeadmin/.kube
+    state: directory
+
+- copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/kubeadmin/.kube/config
+    remote_src: yes
+    mode: 0644
+
+- shell: | 
+          cat <<EOF > /etc/sudoers.d/kubeadmin 
+          ALL            ALL = (ALL) NOPASSWD: ALL
+          EOF

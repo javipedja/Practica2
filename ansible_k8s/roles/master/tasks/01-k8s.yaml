@@ -1,16 +1,79 @@
   - name: Configuracion firwall servicio mountd
     firewalld:
-      port: {{ ports }}
+      port: 6443/tcp
       permanent: true
       state: enabled
-    vars:
-      ports:
-        - 6443/tcp
-        - 2379-2380/tcp
-        - 10250/tcp
-        - 10251/tcp
-        - 10252/tcp
-        - 10255/tcp
-  
+      immediate: yes
+  - firewalld:
+      port: 2379-2380/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+  - firewalld:
+      port: 10250/tcp
+      permanent: true
+      state: enabled    
+      immediate: yes
+  - firewalld:
+      port: 10251/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+  - firewalld:
+      port: 10252/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+  - firewalld:
+      port: 10255/tcp
+      permanent: true
+      state: enabled
+      immediate: yes
+
   - name: Configuramos kudeadm
     shell: kubeadm config images pull
+
+  - name: Permitiremos el acceso desde los workers
+    firewalld:
+      rich_rule: "rule family=ipv4 source address={{ groups['worker'][0] }}/32 accept"
+      permanent: true
+      state: enabled
+
+  - name: Permitimos el acceso de los contenedores a localhost
+    firewalld:
+      rich_rule: "rule family=ipv4 source address=172.17.0.0/16 accept"
+      permanent: true
+      state: enabled
+      zone: public 
+
+  - name: Reset Kubernetes
+    shell: "kubeadm reset --force"
+    register: reset_cluster
+
+  - name: Instalamos el plugin CNI (Container Network Interface) de kubernetes y definimos la red de los PODs
+    when: reset_cluster is succeeded
+    shell: kubeadm init --pod-network-cidr 192.169.0.0/16
+    register: kubeadm_result
+
+  - name: Storing Logs and Generated token for future purpose.
+    local_action: copy content={{ kubeadm_result.stdout }} dest={{ token_file }}
+    become: False
+
+  - name: debug
+    debug: msg="{{ kubeadm_result.stdout_lines }}"
+  
+  - name: Autorizar al usuario root acceder al cluster
+    file:
+      path: /root/.kube
+      state: directory
+
+  - name: Copiamos
+    copy:
+      src: /etc/kubernetes/admin.conf
+      dest: /root/.kube/config
+      remote_src: yes
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: 0644
+
+

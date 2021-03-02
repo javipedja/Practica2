@@ -1,1 +1,4 @@
-- include_tasks: 00-nfs.yaml
+- include_tasks: 01-k8s.yaml
+- include_tasks: 02-sdn.yaml
+- include_tasks: 03-ingress.yaml
+- include_tasks: 04-user.yaml

@@ -1,1 +1,2 @@
-- include_tasks: 00-config.yaml
+- include_tasks: 01-config.yaml
+- include_tasks: 02-config.yaml

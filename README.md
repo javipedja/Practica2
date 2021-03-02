@@ -58,3 +58,7 @@ passwd ansible
 
 para reducir gastos en al suscripción  apramso las maquinas de azures
 az vm stop --name vm-worker01 --resource-group kubernetes_rg    
+
+Si ya hicimos el init hay que resetear
+kubeadm reset
+
