@@ -35,9 +35,11 @@
 
   - name: Permitiremos el acceso desde los workers
     firewalld:
-      rich_rule: "rule family=ipv4 source address={{ groups['worker'][0] }}/32 accept"
+      rich_rule: "rule family=ipv4 source address={{ item }}/32 accept"
       permanent: true
       state: enabled
+    with_items:
+      - "{{ groups['worker'] }}"
 
   - name: Permitimos el acceso de los contenedores a localhost
     firewalld:

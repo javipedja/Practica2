@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: docker.io/ alexwhen /docker 2048:latest      
+        image: alexwhen/docker-2048      
         ports:
         - containerPort: 80

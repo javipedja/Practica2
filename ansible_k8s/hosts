@@ -9,4 +9,6 @@ ansible_user = adminUsername
 master.azure
 
 [worker]
-worker.azure
+worker01.azure
+worker02.azure
+

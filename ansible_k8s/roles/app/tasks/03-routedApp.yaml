@@ -1,0 +1,26 @@
+  - name: Creamos un namespace
+    shell: kubectl create namespace webapp-routed
+
+  - name: Copiamos first-routed-webapp
+    copy:
+      src: app/first-routed-webapp.yaml
+      dest: /home/adminUsername
+  
+  - name: Realizamos el deployment
+    shell: kubectl apply -f first-routed-webapp.yaml
+
+  - name: Copiamos el ingress
+    copy:
+      src: app/ingress.yaml
+      dest: /home/adminUsername
+  
+  - name: Desplegamos el ingress
+    shell: kubectl apply -f ingress.yaml
+
+  - name: Copiamos el ConfigMap 
+    copy:
+      src: app/configmap.yaml
+      dest: /home/adminUsername
+  
+  - name: Desplegamos el ingress
+    shell: kubectl apply -f configmap.yaml

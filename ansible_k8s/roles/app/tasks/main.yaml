@@ -1,2 +1,3 @@
 - include_tasks: 01-appVolumen.yaml
 - include_tasks: 02-firstApp.yaml
+- include_tasks: 03-routedApp.yaml
