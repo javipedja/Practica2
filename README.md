@@ -1,6 +1,24 @@
-# Practica2
-Practica 2 Unir
+# Practica 2 Unir
 
+## Automatización de despliegues en entornos Cloud
+
+Para el despliegue de kubernetes en entornos Cloud se deberan realizar los siguientes pasos:
+
+* Intalar en maquina donde se va a lanzar la automatización Terraform y Ansible.
+* Tener clave publica en la maquina donde lanzaremos el proceso.
+* Clonar el repositorio Git
+* Tener suscripción a Azure
+* Recuerar datos de la suscripción de Azure apra la conexión con terraform
+* Crear fichero credentials.tf con los datos de la suscripción. (importante que el ficehro este en el .gitignore para no subirlo al control de código fuente)
+* Aceptamos los terminos de azure para la suscripción:
+
+az vm image terms show --urn cognosys:centos-8-stream-free:centos-8-stream-free:1.2019.0810
+
+az vm image accept-terms --urn cognosys:centos-8-stream-free:centos-8-stream-free:1.2019.0810
+
+* Lanzar script "01    " encargado de la creación de la infrastructura en Azure mediante la utilización de Terraform.
+* Lanzr script "02     "
+* 
 Empezamos el desarrollo creando un repositorio en git.
 
 Creamos los ficheros terrafor y el de credenciales, lo añadimos al git ignore para que no suba al repositorio.
