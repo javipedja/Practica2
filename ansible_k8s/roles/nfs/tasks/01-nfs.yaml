@@ -16,6 +16,24 @@
       daemon_reload: yes
       enabled: yes
 
+  
+  - name: Configurar el acceso al share de NFS.
+    lineinfile:
+      path: /etc/exports
+      line: /mnt/resource	{{ item }}(rw,sync)
+    with_items:
+      - "{{ groups['worker'] }}"
+      - "{{ groups['master'] }}"
+
+  - name: Aplicar nueva configuración al /etc/exports
+    shell: exportfs -r
+  
+  - shell: exportfs -s
+    register: export_result
+
+  - name: debug de exports
+    debug: msg="{{ export_result.stdout_lines }}"
+
   - name: Configuracion firwall servicio nfs
     firewalld:
       service: nfs

@@ -1,7 +1,5 @@
 - name: Despliegues comunes para todos los nodos
   hosts: all
-  vars_files:
-    - "group_vars/comunes.yaml"
   become: yes
   gather_facts: true
   roles:
@@ -15,6 +13,12 @@
   gather_facts: true
   roles:
     - master
+
+- name: Despliegues nodo nfs
+  hosts: nfs
+  become: yes
+  gather_facts: true
+  roles:
     - nfs
 
 - name: Despliegues nodo worker

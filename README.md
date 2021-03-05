@@ -29,5 +29,5 @@ az vm image accept-terms --urn cognosys:centos-8-stream-free:centos-8-stream-fre
 ```
 
 * Lanzar script "01-Crear_maquinas_Azure" encargado de la creación de la infrastructura en Azure mediante la utilización de Terraform.
-* Lanzar script "02-Instalar_k8s.sh" que tiene tres parametros de entrada: IP del nodo master, IP del nodo worker, IP del otro nodo worker. El script despliega los 3 nodos de kubernetes en las maquinas virtuales pasadas por parametro mediante Ansible.
-* Lanzar script "03-DesplegarApp" que tiene como parametro el nodo que tiene el servidor nfs. El script despliega tres ejemplos de aplicación diferente en el clúster de kubernetes mediante Ansible.
+* Lanzar script "02-Instalar_k8s.sh" que tiene tres parámetros de entrada: IP del nodo master, IP del nodo worker, IP del otro nodo worker. El script despliega los 3 nodos de kubernetes en las máquinas virtuales pasadas por parámetro mediante Ansible.
+* Lanzar script "03-DesplegarApp" que tiene como parámetro el nodo que tiene el servidor nfs. El script despliega tres ejemplos de aplicación diferente en el clúster de kubernetes mediante Ansible.

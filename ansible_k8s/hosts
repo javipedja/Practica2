@@ -1,4 +1,4 @@
-#Inventario utilizando 2 servidores de 2 CPUs
+#Inventario utilizando 1 servidor de 2 CPUs y 2 servidores 1 CPUs
 
 [all:vars]
 ansible_python_interpreter = /usr/bin/python3
@@ -6,9 +6,11 @@ ansible_user = adminUsername
 
 
 [master]
-master.azure
+20.71.33.36
 
 [worker]
-worker01.azure
-worker02.azure
+20.71.32.89
+20.71.216.48
 
+[nfs]
+20.71.33.36

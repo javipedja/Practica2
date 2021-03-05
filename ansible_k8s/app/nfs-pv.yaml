@@ -15,5 +15,5 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /srv/nfs
-    server: master.azure
+    path: /mnt/resource
+    server: nfs.azure

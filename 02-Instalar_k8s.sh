@@ -32,6 +32,7 @@ ssh -o StrictHostKeyChecking=no adminUsername@$3 'echo "soy el worker 2 && "exit
 echo 'Configuramos los hosts para el inventario'
 cd ansible_k8s
 sed -i "s/master.azure/$1/" hosts
+sed -i "s/nfs.azure/$1/" hosts
 sed -i "s/worker01.azure/$2/" hosts
 sed -i "s/worker02.azure/$3/" hosts
 

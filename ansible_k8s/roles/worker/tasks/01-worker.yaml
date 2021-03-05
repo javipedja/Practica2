@@ -13,10 +13,10 @@
       immediate: yes
       zone: public
   
-  - name: Copying token to worker nodes
+  - name: Copiamos el token en el worker node
     copy: src={{ token_file }} dest=join_token
 
-  - name: Joining worker nodes with kubernetes master
+  - name: Enlazamos el worker node en el cluster 
     shell: |
      cat join_token | tail -2 > out.sh
      sh out.sh
