@@ -6,11 +6,11 @@ ansible_user = adminUsername
 
 
 [master]
-20.71.33.36
+master.azure
 
 [worker]
-20.71.32.89
-20.71.216.48
+worker01.azure
+worker02.azure
 
 [nfs]
-20.71.33.36
+nfs.azure
