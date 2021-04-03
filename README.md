@@ -14,10 +14,10 @@ Para el despliegue de kubernetes en entornos Cloud se deberan realizar los sigui
 ```yaml
 provider "azurerm" {
   features {}
-  subscription_id = "97c6977a-e7b8-42cc-9e2d-bec4eb73b99d"
-  client_id       = "c49e59f7-628a-4537-89cc-5e2e1a521267" # appID
-  client_secret   = "GU2KaJYR2-Wr2D2GQcm7Las8hkH4vG1A6c"   # password
-  tenant_id       = "f8389572-8716-463a-b0ad-8e694a1e9119" # tenant
+  subscription_id = "97c6977a-e7b8-42cd-9e2d-bec4eb73b994r5te2222123ed"
+  client_id       = "c49e59f7-628a-4537-89cc-5e2e1a52126722222" # appID
+  client_secret   = "GU2KaJYR2-Wr2D2GQcm7Las8hkH4vG324324"   # password
+  tenant_id       = "f8389572-8716-463a-b0ad-8e694324324324ersdgra1e9119" # tenant
 }
 
 ```
